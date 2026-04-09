@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-color: #4c6e5f;
+    --second-color: #285A48;
+    --third-color: #408A71;
+    --fourth-color: #B0E4CC;
+    --text-color: black;
+}
+
 .modal {
     position: fixed;
     top: 50%;
@@ -66,4 +74,71 @@
 #overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+body {
+    background-color: var(--main-color);
+    padding: 0px 50px;
+}
+
+h1, h2, p {
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
+}
+
+#intro {
+    background-color: var(--second-color);
+}
+
+#gameSelector {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--second-color);
+}
+
+#gameSelector h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#gameOptions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gameCard {
+    flex: 1;
+    max-width: 300px;
+    height: 400px;
+    background: white;
+    padding: .4em;
+    border: 3px solid var(--fourth-color);
+    border-radius: 6px;
+}
+
+.gameImg {
+    background-color: var(--thrid-color);
+    width: 100%;
+    height: 60%;
+    border-radius: 6px 6px 0 0;
+}
+
+.gameTitle {
+    color: var(--text-color);
+    padding: 10px 7px 0;
+}
+
+.gameDesc {
+    padding: 5px;
 }
