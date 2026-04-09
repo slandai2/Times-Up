@@ -1,22 +1,53 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Modal</title>
-        <link href="styles.css" rel="stylesheet">
-        <script defer src="script.js"></script>
-    </head>
-    <body>
-        
-        <p>wooooo games here and other things</p>
-        <div class="modal" id="modal">
-            <div class="modal-header">
-                <div data-modal-target="close-button" class="title">Example</div>
-            </div>
-            <div class="modal-body">
-                <p id="countdown"></p>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Up!</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <nav><h1>Welcome Banner</h1></nav>
 
-        <div id="overlay"></div>
-    </body>
+    <div id="intro">
+        <h2>Brief Explanation...</h2>
+        <p>TEXT</p>
+    </div>
+
+    <div id="gameSelector">
+        <h1>SELECT A GAME</h1>
+        <div id="gameOptions">
+            
+            <a href="game.html">
+                <div class="gameCard">
+                    <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
+                    <h2 class="gameTitle">TITLE</h2>
+                    <p class="gameDesc">DESC.</p>
+                </div>
+            </a>
+
+            <a href="game.html">
+                <div class="gameCard">
+                    <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
+                    <h2 class="gameTitle">TITLE</h2>
+                    <p class="gameDesc">DESC.</p>
+                </div>
+            </a>
+
+            <a href="game.html">
+                <div class="gameCard">
+                    <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
+                    <h2 class="gameTitle">TITLE</h2>
+                    <p class="gameDesc">DESC.</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+    </footer>
+
+</body>
+<script src=script.js></script>
 </html>
