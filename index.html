@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Up!</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/ico" href="/favicon-16x16.ico">
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <nav><h1>Welcome Banner</h1></nav>
+
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div data-modal-target="close-button" class="title">Example</div>
+        </div>
+        <div class="modal-body">
+            <p id="countdown"></p>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
+
+    <nav><h1>Time's Up</h1></nav>
+    <br>
 
     <div id="intro">
-        <h2>Brief Explanation...</h2>
-        <p>TEXT</p>
+        <br>
+        <h2>Welcome! Choose a game, set your playtime, and enjoy! 
+            Once your time's up, you'll be BANNED from the website...
+        </h2>
+        <p>...only for an hour! So use your time wisely!</p>
+        
     </div>
+
+    <br>
 
     <div id="gameSelector">
         <h1>SELECT A GAME</h1>
@@ -21,7 +42,7 @@
             <a href="game.html">
                 <div class="gameCard">
                     <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
-                    <h2 class="gameTitle">TITLE</h2>
+                    <h3 class="gameTitle">TITLE</h3>
                     <p class="gameDesc">DESC.</p>
                 </div>
             </a>
@@ -29,7 +50,7 @@
             <a href="game.html">
                 <div class="gameCard">
                     <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
-                    <h2 class="gameTitle">TITLE</h2>
+                    <h3 class="gameTitle">TITLE</h3>
                     <p class="gameDesc">DESC.</p>
                 </div>
             </a>
@@ -37,7 +58,7 @@
             <a href="game.html">
                 <div class="gameCard">
                     <img class="gameImg" src="https://icons.veryicon.com/png/o/miscellaneous/effevo/game-49.png">
-                    <h2 class="gameTitle">TITLE</h2>
+                    <h3 class="gameTitle">TITLE</h3>
                     <p class="gameDesc">DESC.</p>
                 </div>
             </a>
