@@ -91,4 +91,68 @@ function closeModal(modal) {
 // add explanations (annotate)
 // ask kevin for code so i can implement properly
 
+//Timer Page
+// Timer Buttons
+let increaseHour = document.querySelector(".increaseHour");
+let decreaseHour = document.querySelector(".decreaseHour");
+
+let increaseMinute = document.querySelector(".increaseMinute");
+let decreaseMinute = document.querySelector(".decreaseMinute");
+
+let increaseSecond = document.querySelector(".increaseSecond");
+let decreaseSecond = document.querySelector(".decreaseSecond");
+
+// P element Numbers (for timer)
+let hNumber = document.querySelector(".hNumber");
+let mNumber = document.querySelector(".mNumber");
+let sNumber = document.querySelector(".sNumber");
+
+// button funct
+let hour = 0;
+let min = 0;
+let sec = 0;
+
+// Hours
+increaseHour.onclick = function() {
+    if (hour < 24) {
+        hour++; 
+        hNumber.innerText = hour;
+    }
+};
+decreaseHour.onclick = function() {
+    if (hour > 0) {
+        hour--;
+        hNumber.innerText = hour;
+    }
+};
+
+// Minutes
+increaseMinute.onclick = function() {
+    if (min < 59) {
+        min++; 
+        mNumber.innerText = min;
+    }
+};
+decreaseMinute.onclick = function() {
+    if (min > 0) {
+        min--;
+        mNumber.innerText = min;
+    }
+};
+
+// Seconds
+increaseSecond.onclick = function() {
+    if (sec < 59) {
+        sec++; 
+        sNumber.innerText = sec;
+    }
+};
+decreaseSecond.onclick = function() {
+    if (sec > 0) {
+        sec--;
+        sNumber.innerText = sec;
+    }
+};
+
+//Confirm button
 
