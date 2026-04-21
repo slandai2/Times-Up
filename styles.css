@@ -173,3 +173,52 @@ nav:hover {
 .gameDesc {
     text-align: center;
 }
+
+
+.timerInput, .hours, .minutes, .seconds {
+    text-align: center;
+    padding-inline: 30px;
+    transform: translate(37px);
+    display: inline-block;
+}
+
+.increaseHour, .increaseMinute, .increaseSecond, .decreaseHour, .decreaseMinute, .decreaseSecond {
+    font-size: 20px;
+    color: var(--text-color);
+    background-color: var(--main-color);
+}
+
+.decreaseHour, .decreaseMinute, .decreaseSecond {
+    margin-bottom: 15px;
+}
+
+.hNumber, .mNumber, .sNumber {
+    font-size: 30px;
+}
+
+#confirm {
+    color: var(--text-color);
+    font-size: 25px;
+    background-color: var(--main-color);
+    padding: 10px;
+    margin-left: 5cm;
+    cursor: pointer;
+}
+
+#return {
+    color: var(--text-color);
+    font-size: 15px;
+    background-color: var(--main-color);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.runningTimer {
+    display: inline-flex;
+    transform: translate(415px);
+    font-size: 50px;
+    color:white;
+    border-radius: 10px;
+    border:solid;
+    border-color: white;
+}
