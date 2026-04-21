@@ -1,50 +1,43 @@
 const openTimer = document.querySelectorAll('[data-modal-target]')
+const openOtherTimer = document.querySelectorAll('[data-modal-target-time]')
 const overlay = document.getElementById('overlay')
+const overlayTime = document.getElementById('overlayTime')
 
-var countdown = new Date().getTime() + 15000; // x amount of time 
-var currentTime = new Date().getTime()
-var measuredDistance = countdown - currentTime;
-let timerRan = true
-let testBool = false
-var reloadCount = 0
-var x
+var timerRan = 'false';
 
+var countdown = new Date().getTime() + 3600000; // Note for Samara - annotate  
 
-openTimer.forEach(div => { // focus on opening modal instead of keeping it closed
-    if (timerRan) {
-        window.addEventListener('load', () => {
-            const modal = div.closest('.modal')
-            openModal(modal)
-            countdown = localStorage.getItem("time")
-                    // ok. i think this works fine actually. figure out whats going on w bool  
+openTimer.forEach(div => { 
+    window.addEventListener('load', () => {
+            const saved = localStorage.getItem('timerStatus')
+            if (saved === 'true') {
+                const modal = div.closest('.modal')
+                countdown = parseInt(localStorage.getItem("time"))
+                openModal(modal)
+            }
+            
     })
-    }
+}
+
+openOtherTimer.forEach(button => {
+    button.addEventListener('click', () => {
+        const t = button.closest('.modalTime')
+        if (localStorage.getItem('timerStatus')) {
+            t.classList.remove('active')
+            overlayTime.classList.remove('active')
+        }
+        confirmed(t)
+    })
 })
 
-// var x = setInterval(function () {
-//         currentTime = new Date().getTime()
-//         var distance = localStorage.getItem("time") - currentTime
-            
-//         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-//         document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s"
-        
-//         if (distance < 0) {
-//             closeModal(modal)
-//         }
-            
-//         localStorage.setItem("time", countdown)
-// }, 1000)
-// } // need smth to prevent interval from running every time
 function runInterval() {
+    if (!localStorage.getItem("time")) {
+        localStorage.setItem("time", countdown);
+    }
+
     x = setInterval(function () {
-        currentTime = new Date().getTime()
-        var distance = measuredDistance
-        if (measuredDistance <= localStorage.getItem("time")) {
-            distance = localStorage.getItem("time") - currentTime 
-        }
-        // will show correct time then reset to first time
+        let now = new Date().getTime()
+        let distance = countdown - now;
         
         
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -52,16 +45,16 @@ function runInterval() {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
         document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s"
 
-        if (distance < 0) {
+        if (distance <= 0) {
             closeModal(modal)
         }
 
-        localnStorage.setItem("time", countdown)
+        localStorage.setItem("time", now + distance)
 
             
     }, 1000)
     
-    localStorage.setItem("time", new Date().getTime() + 15000) // not ecactly hjhghjghg
+    localStorage.setItem("time", new Date().getTime() + 3600000)
 }
 
 function openModal(modal) {
@@ -73,23 +66,58 @@ function openModal(modal) {
 
 function closeModal(modal) {
     if (modal == null) return
-    //console.log(distance)
     clearInterval(x)
     document.getElementById("countdown").innerHTML = "Welcome Back";
-    localStorage.clear();
+    localStorage.removeItem('time');
     setTimeout(() => {
         modal.classList.remove('active')
         overlay.classList.remove('active')
     }, 1000)
+    timerRan = 'false'
+    localStorage.setItem('timerStatus', timerRan)
     
 }
 
-// in the morning: make this open on start up then set timer to take it off (complete)
-// create countdown timer to display on modal (complete)
-// mess with local storage so that timer doesn't reset on reload (complete)
-// check what's going on with local storage
-// add explanations (annotate)
-// ask kevin for code so i can implement properly
+function confirmed(t) {
+    if (t == null) return
+    
+    t.classList.remove('active')
+    overlayTime.classList.remove('active')
+    timerRan = 'true'
+    localStorage.setItem('timerStatus', timerRan)
+    playTime()
+}
+
+//PLACEHOLDER - replace with what you found works
+function playTime() {
+    let y = setInterval(function() {
+        var currTime = new Date().getTime()
+        let hourSeconds = 1000 * 60 * 60 * hour
+        let minuteSeconds = 1000 * 60 * min
+        let secSeconds = 1000 * sec
+        let dis = hourSeconds + minuteSeconds + secSeconds
+
+        let actual = dis
+        if (dis <= localStorage.getItem('pleaseRun')) {
+            actual = localStorage.getItem('pleaseRun') - currTime
+        } else {
+            actual = (currTime + dis) - currTime
+        }
+
+        hourSeconds = Math.floor((actual % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minuteSeconds = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
+        secSeconds = Math.floor((actual % (1000 * 60)) / 1000);
+        document.getElementById("runningTimer").innerHTML = hour + "h " + min + "m " + secSeconds + "s"
+        
+        if (actual < 0) {
+            localStorage.setItem('timerStatus', 'true')
+            window.location.replace('index.html')
+            localStorage.setItem('time', new Date().getTime() + 3600000)
+        }
+        
+        localStorage.setItem('runPlease', currTime + actual);
+    }, 1000)
+}
 
 //Timer Page
 // Timer Buttons
