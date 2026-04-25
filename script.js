@@ -9,19 +9,14 @@ var countdown = new Date().getTime() + 3600000; // Note for Samara - annotate
 
 openTimer.forEach(div => { 
     window.addEventListener('load', () => {
-    const savedStatus = localStorage.getItem('timerStatus');
-    const savedTime = localStorage.getItem('time');
-
-    if (savedStatus === 'true' && savedTime) {
-        // Hide the input modal if it's currently showing
-        const modal = document.getElementById('modalTime');
-        const overlay = document.getElementById('overlayTime');
-        if (modal) modal.classList.remove('active');
-        if (overlay) overlay.classList.remove('active');
-
-        startCountdownInterval(parseInt(savedTime));
-    }
-});
+            const saved = localStorage.getItem('timerStatus')
+            if (saved === 'true') {
+                const modal = div.closest('.modal')
+                countdown = parseInt(localStorage.getItem("time"))
+                openModal(modal)
+            }
+            
+    })
 })
 
 openOtherTimer.forEach(button => {
