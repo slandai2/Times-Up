@@ -9,15 +9,20 @@ var countdown = new Date().getTime() + 3600000; // Note for Samara - annotate
 
 openTimer.forEach(div => { 
     window.addEventListener('load', () => {
-            const saved = localStorage.getItem('timerStatus')
-            if (saved === 'true') {
-                const modal = div.closest('.modal')
-                countdown = parseInt(localStorage.getItem("time"))
-                openModal(modal)
-            }
-            
-    })
-}
+    const savedStatus = localStorage.getItem('timerStatus');
+    const savedTime = localStorage.getItem('time');
+
+    if (savedStatus === 'true' && savedTime) {
+        // Hide the input modal if it's currently showing
+        const modal = document.getElementById('modalTime');
+        const overlay = document.getElementById('overlayTime');
+        if (modal) modal.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+
+        startCountdownInterval(parseInt(savedTime));
+    }
+});
+})
 
 openOtherTimer.forEach(button => {
     button.addEventListener('click', () => {
@@ -84,39 +89,35 @@ function confirmed(t) {
     t.classList.remove('active')
     overlayTime.classList.remove('active')
     timerRan = 'true'
-    localStorage.setItem('timerStatus', timerRan)
-    playTime()
+
+    const totalMs = (hour * 3600000) + (min * 60000) + (sec * 1000);
+    const endTime = new Date().getTime() + totalMs;
+
+    localStorage.setItem('timerStatus', timerRan);
+    localStorage.setItem('timerEndTime', endTime);
+
+    timerCountdown(endTime);
 }
 
-//PLACEHOLDER - replace with what you found works
-function playTime() {
-    let y = setInterval(function() {
-        var currTime = new Date().getTime()
-        let hourSeconds = 1000 * 60 * 60 * hour
-        let minuteSeconds = 1000 * 60 * min
-        let secSeconds = 1000 * sec
-        let dis = hourSeconds + minuteSeconds + secSeconds
+//Timer Countdown
+function timerCountdown(endTime) {
+    const x = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = endTime - now;
 
-        let actual = dis
-        if (dis <= localStorage.getItem('pleaseRun')) {
-            actual = localStorage.getItem('pleaseRun') - currTime
-        } else {
-            actual = (currTime + dis) - currTime
+        if (distance <= 0) {
+            window.location.replace('index.html');
+            return;
         }
 
-        hourSeconds = Math.floor((actual % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        minuteSeconds = Math.floor((actual % (1000 * 60 * 60)) / (1000 * 60));
-        secSeconds = Math.floor((actual % (1000 * 60)) / 1000);
-        document.getElementById("runningTimer").innerHTML = hour + "h " + min + "m " + secSeconds + "s"
-        
-        if (actual < 0) {
-            localStorage.setItem('timerStatus', 'true')
-            window.location.replace('index.html')
-            localStorage.setItem('time', new Date().getTime() + 3600000)
-        }
-        
-        localStorage.setItem('runPlease', currTime + actual);
-    }, 1000)
+        const h = Math.floor(distance / 3600000);
+        const m = Math.floor((distance % 3600000) / 60000);
+        const s = Math.floor((distance % 60000) / 1000);
+
+        const display = document.getElementById("runningTimer");
+        if (display) display.innerHTML = `${h}h ${m}m ${s}s`;
+
+    }, 1000);
 }
 
 //Timer Page
@@ -181,6 +182,3 @@ decreaseSecond.onclick = function() {
         sNumber.innerText = sec;
     }
 };
-
-//Confirm button
-
