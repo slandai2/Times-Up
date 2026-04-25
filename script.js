@@ -101,6 +101,7 @@ function timerCountdown(endTime) {
         const distance = endTime - now;
 
         if (distance <= 0) {
+            clearInterval(x);
             window.location.replace('index.html');
             return;
         }
@@ -113,6 +114,7 @@ function timerCountdown(endTime) {
         if (display) display.innerHTML = `${h}h ${m}m ${s}s`;
 
     }, 1000);
+    localStorage.setItem("time", new Date().getTime() + 3600000)
 }
 
 //Timer Page
