@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time's Up! - Game B</title>
+    <link rel="icon" type="image/png" href="/TimesUp/assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="script.js"></script>
+</head>
+<header>
+    <div class="active" id="overlayTime"></div>
+    <div class="modalTime active" id="modalTime">
+        <button id="return"><a href="index.html">Go Back</a></button>
+        <div class="modal-header">
+            
+            <div class="title">How Long Will You Play?</div>
+        </div>
+        <div class="modal-body">
+            <div class="timerInput">
+                <div class="hours">
+                    <h1>H</h1>
+                    <div class="scroll">
+                        <button class="increaseHour">+</button>
+                        <p class="hNumber">0</p>
+                        <button class="decreaseHour">-</button>
+                    </div>
+                </div>
+
+                <div class="minutes">
+                    <h1>M</h1>
+                    <div class="scroll">
+                        <button class="increaseMinute">+</button>
+                        <p class="mNumber">0</p>
+                        <button class="decreaseMinute">-</button>
+                    </div>
+                </div>
+
+                <div class="seconds">
+                    <h1>S</h1>
+                    <div class="scroll">
+                        <button class="increaseSecond">+</button>
+                        <p class="sNumber">0</p>
+                        <button class="decreaseSecond">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button data-modal-target-time="close-button" id="confirm">CONFIRM</button>
+    </div>
+
+    <!-- <button id="toggle" onclick="toggle()">toggle</button> -->
+    <div class="runningTimer" id="runningTimer">
+        <p id="running"></p>
+        </table>
+    </div>
+</header>
+<body>
+    <div id="solitaire">
+        <iframe src="https://cloud.onlinegames.io/games/2025/html/solitaire/index-og.html" height="600" width="800"></iframe>
+    </div>
+
+</body>
+</html>
