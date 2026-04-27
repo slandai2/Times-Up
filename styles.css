@@ -7,24 +7,23 @@
     --second-color: #88b498;
     --third-color: #408A71;
     --fourth-color: #B0E4CC;
-    --text-color: black;
+    --text-color: rgb(229, 222, 222);
 }
 
-.modal {
+.modal, .modalTime{
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
-    border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
-    background-color: white;
+    background-color: #1b201e;
     width: 500px;
     max-width: 80%;
 }
 
-.modal.active {
+.modal.active, .modalTime.active {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -37,8 +36,10 @@
 }
 
 .modal-header .title {
-    font-size: 1cm;
+    font-size: 0.75cm;
     font-weight: bold;
+    color: var(--text-color);
+    margin-left: 2.3cm;
 }
 
 .modal-header .close-button {
@@ -59,7 +60,7 @@
     font-weight: bold;
 }
 
-#overlay {
+#overlay, #overlayTime{
     position: fixed;
     opacity: 0;
     transition: 200ms ease-in-out;
@@ -71,7 +72,7 @@
     pointer-events: none;
 }
 
-#overlay.active {
+#overlay.active, #overlayTime.active {
     opacity: 1;
     pointer-events: all;
 }
@@ -94,39 +95,50 @@ a {
     text-decoration: none;
 }
 
+a:visited {
+    color: var(--text-color);
+}
+
 nav {
     border-radius: 15px;
     border-style: solid;
     border-color: var(--second-color);
     max-width: 300px;
-    margin-left: 400px;
-    background-color: var(--second-color);
+    margin-left: 420px;
+    background-color: var(--first-color);
     display: flex;
     justify-content: center;
-    animation: 0.75s ringing;
+    animation: 0.5s ringing;
 }
 
 nav:hover {
-    animation: ringing 0.75s linear infinite;
+    animation: ringing 0.5s linear infinite;
 }
 
+
 @keyframes ringing {
-    0%   {transform: rotate(0deg);}
-    20%  {transform: rotate(5deg); background-color: var(--second-color);}
-    40%  {transform: rotate(-5deg); background-color: var(--second-color);}
-    60%  {transform: rotate(5deg); background-color: var(--second-color);}
-    80%  {transform: rotate(-5deg);}
+    0%   {transform: rotate(5deg);}
+    25%  {transform: rotate(-5deg); background-color: var(--second-color);}
+    50%  {transform: rotate(5deg); background-color: var(--second-color);}
+    75%  {transform: rotate(-5deg);}
     100%  {transform: rotate(0deg);}
+}
+
+@keyframes bump {
+    100% {transform: translate(0px, -3px);}
 }
 
 #intro {
     border-radius: 15px;
     border-style: hidden;
-    background-color: var(--second-color);
     padding-left: 3px;
     height: 150px;
     text-align: center;
     padding: auto;
+}
+
+#intro:hover {
+    animation: bump 0.05s linear forwards;
 }
 
 #gameSelector {
@@ -158,6 +170,17 @@ nav:hover {
     border: 3px solid var(--fourth-color);
     border-radius: 6px;
 }
+#gameCardA:hover {
+    animation: bump 0.05s linear forwards;
+}
+
+#gameCardB:hover {
+    animation: bump 0.05s linear forwards;
+}
+
+#gameCardC:hover {
+    animation: bump 0.05s linear forwards;
+}
 
 .gameImg {
     background-color: var(--third-color);
@@ -176,7 +199,6 @@ nav:hover {
 .gameDesc {
     text-align: center;
 }
-
 
 .timerInput, .hours, .minutes, .seconds {
     text-align: center;
@@ -224,4 +246,19 @@ nav:hover {
     border-radius: 10px;
     border:solid;
     border-color: white;
+}
+
+#blockBlast {
+    position: relative;
+    inset: 24%;
+}
+
+#solitaire {
+    position: relative;
+    inset: 15%;
+}
+
+#geoDash {
+    position: relative;
+    inset: 8%;
 }
