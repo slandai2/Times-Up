@@ -152,7 +152,7 @@ nav:hover {
 .gameCard {
     flex: 1;
     max-width: 350px;
-    height: 350px;
+    height: 400px;
     background: rgb(58, 62, 61);
     padding: .4em;
     border: 3px solid var(--fourth-color);
@@ -160,8 +160,11 @@ nav:hover {
 }
 
 .gameImg {
-    background-color: var(--thrid-color);
-    width: 300px;
+    background-color: var(--third-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 330px;
     height: 250px;
 }
 
