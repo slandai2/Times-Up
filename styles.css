@@ -74,6 +74,7 @@
 
 #overlay.active, #overlayTime.active {
     opacity: 1;
+    z-index: 9;
     pointer-events: all;
 }
 
