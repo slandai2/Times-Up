@@ -31,7 +31,6 @@ openOtherTimer.forEach(button => {
 testVar.forEach(div => {
     window.addEventListener('load', () => {
         const confirmTime = localStorage.getItem('confirmedTime')
-        console.log(confirmTime)
         const x = div.closest('.modalTime')
         if (confirmTime === 'true') {
             endTime = parseInt(localStorage.getItem('updatedEndTime'))
@@ -73,7 +72,7 @@ function openModal(modal) {
     if (modal == null) return false
     modal.classList.add('active')
     overlay.classList.add('active')
-    runInterval() // ok you make everything work. why are you negative
+    runInterval() 
 }
 
 function closeModal(modal) {
@@ -119,7 +118,7 @@ function timerCountdown(endTime) {
 
         if (distance <= 0) {
             clearInterval(x);
-            localStorage.setItem('timerStatus', timerRan);
+            localStorage.setItem('timerStatus', 'true');
             window.location.replace('index.html');
             return;
         }
@@ -134,6 +133,7 @@ function timerCountdown(endTime) {
         localStorage.setItem('updatedEndTime', now + distance)
 
     }, 1000);
+    localStorage.setItem('confirmTime', 'false')
     localStorage.setItem("time", new Date().getTime() + 3600000)
 }
 
