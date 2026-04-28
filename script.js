@@ -1,9 +1,11 @@
 const openTimer = document.querySelectorAll('[data-modal-target]')
 const openOtherTimer = document.querySelectorAll('[data-modal-target-time]')
+const testVar = document.querySelectorAll('[data-modal-target-time]')
 const overlay = document.getElementById('overlay')
 const overlayTime = document.getElementById('overlayTime')
 
 var timerRan = 'false';
+var playing = 'false';
 
 var countdown = new Date().getTime() + 3600000; // Note for Samara - annotate  
 
@@ -22,11 +24,21 @@ openTimer.forEach(div => {
 openOtherTimer.forEach(button => {
     button.addEventListener('click', () => {
         const t = button.closest('.modalTime')
-        if (localStorage.getItem('timerStatus')) {
-            t.classList.remove('active')
+        confirmed(t)
+    })
+})
+
+testVar.forEach(div => {
+    window.addEventListener('load', () => {
+        const confirmTime = localStorage.getItem('confirmedTime')
+        console.log(confirmTime)
+        const x = div.closest('.modalTime')
+        if (confirmTime === 'true') {
+            endTime = parseInt(localStorage.getItem('updatedEndTime'))
+            timerCountdown(endTime)
+            x.classList.remove('active')
             overlayTime.classList.remove('active')
         }
-        confirmed(t)
     })
 })
 
@@ -74,6 +86,7 @@ function closeModal(modal) {
         overlay.classList.remove('active')
     }, 1000)
     timerRan = 'false'
+    localStorage.setItem('confirmedTime', playing);
     localStorage.setItem('timerStatus', timerRan)
     
 }
@@ -86,22 +99,27 @@ function confirmed(t) {
     timerRan = 'true'
 
     const totalMs = (hour * 3600000) + (min * 60000) + (sec * 1000);
-    const endTime = new Date().getTime() + totalMs;
+    var endTime = new Date().getTime() + totalMs;
 
-    localStorage.setItem('timerStatus', timerRan);
-    localStorage.setItem('timerEndTime', endTime);
+    // localStorage.setItem('timerStatus', timerRan);
+    // localStorage.setItem('timerEndTime', endTime);
+    localStorage.setItem('confirmedTime', 'true');
 
     timerCountdown(endTime);
 }
 
 //Timer Countdown
 function timerCountdown(endTime) {
+    if(!localStorage.getItem('updatedEndTime')) {
+        localStorage.setItem('updatedEndTime', endTime)
+    }
     const x = setInterval(function () {
         const now = new Date().getTime();
         const distance = endTime - now;
 
         if (distance <= 0) {
             clearInterval(x);
+            localStorage.setItem('timerStatus', timerRan);
             window.location.replace('index.html');
             return;
         }
@@ -112,6 +130,8 @@ function timerCountdown(endTime) {
 
         const display = document.getElementById("runningTimer");
         if (display) display.innerHTML = `${h}h ${m}m ${s}s`;
+
+        localStorage.setItem('updatedEndTime', now + distance)
 
     }, 1000);
     localStorage.setItem("time", new Date().getTime() + 3600000)
