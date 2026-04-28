@@ -240,8 +240,11 @@ nav:hover {
 }
 
 .runningTimer {
-    display: inline-flex;
-    transform: translate(415px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    max-width: 320px;
     font-size: 50px;
     color:white;
     border-radius: 10px;
@@ -250,16 +253,16 @@ nav:hover {
 }
 
 #blockBlast {
-    position: relative;
-    inset: 24%;
+    display: block;
+    margin: auto;
 }
 
 #solitaire {
-    position: relative;
-    inset: 15%;
+    display: block;
+    margin: auto;
 }
 
 #geoDash {
-    position: relative;
-    inset: 8%;
+    display: block;
+    margin: auto;
 }
